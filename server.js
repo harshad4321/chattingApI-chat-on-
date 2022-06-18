@@ -18,5 +18,9 @@ app.get('/',(req,res)=>{
 //socket .io
 
 io.on('connection',(socket)=>{
-    console.log('connected,...')
+    console.log('connected,...');
+    socket.on('message',(msg)=>{
+        console.log(msg)
+        socket.broadcast.emit('message',msg)
+    })
 })
