@@ -15,16 +15,22 @@ body {
 }
 section.chat_section{
     width: 800px;
+    border-radius: 15px;
     max-width: 90%;
-    background: rgba(241, 235, 235, 0.56);
+    background-image:url(./background.jpg);
+    background-repeat: no-repeat;
+    
     box-shadow: 0 10px 15px --3px rgb(rgb(249, 249, 249), green, blue);
 }
 .brand{
     padding: 20px;
-    background:aliceblue;
+    background:#59c520e8;
     display: flex;
     align-items: center;
-
+border-radius: 20px 35px 20px;
+}
+img{
+    border-radius:  15px 15px 15px;
 }
 .brand h1{
     text-transform: uppercase;
@@ -50,22 +56,34 @@ textarea {
 }
 .message{
     padding: 20px;
-    border-radius: 4px;
+    border-radius:15px 15px 5px 10px;
     margin-bottom: 40px;
     max-width: 300px;
     position: relative;
 }
+h4{
+    color:#ffffffd6;
+    font:-webkit-mini-control;
+    
+}
+p{
+    font:icon
+}
 .incoming{
-    background: #8f8be8;
-    color: #fff;
+    background: #65eb73;
+    color: #131111;
 }
 .outgoing{
     background: #e9eafd;
-    color:#787986;
+    color:#788678;
     margin-left: auto;
 }
 .message h4{
     position: absolute;
     top: -20px;
     left: 0;
+}
+textarea{
+    border-radius: 15px;
+   background:rgb(222 222 162)
 }
