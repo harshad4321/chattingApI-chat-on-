@@ -72,6 +72,7 @@ p{
 .incoming{
     background: #65eb73;
     color: #131111;
+    margin-right: auto;
 }
 .outgoing{
     background: #e9eafd;
@@ -86,4 +87,7 @@ p{
 textarea{
     border-radius: 15px;
    background:rgb(222 222 162)
+}
+body{
+    background:#13212c
 }
