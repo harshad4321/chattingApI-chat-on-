@@ -19,9 +19,10 @@ it's  sample chating app  img;
 
 
 
-#Installation
+# Installation
 $ npm install
-Running the app
+
+# Running the app
 # development
 $ npm run dev
 
