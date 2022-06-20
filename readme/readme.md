@@ -13,6 +13,6 @@ https://socket.io/docs/v4/
 
 
 
-it's  sample chating app ;
+it's  sample chating app  img;
 
 ![chat-on!](Photoschaton.png)
