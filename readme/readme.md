@@ -16,3 +16,15 @@ https://socket.io/docs/v4/
 it's  sample chating app  img;
 
 ![chat-on!](Photoschaton.png)
+
+
+
+Installation
+$ npm install
+Running the app
+# development
+$ npm run dev
+
+
+
+
