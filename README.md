@@ -1,6 +1,6 @@
 
 # chating-app-chat-on-
-Realtime chat app using socket.io and vanilla     JavaScript - node.js & express 
+Realtime chat app using socket.io and vanilla JavaScript - node.js & express 
 
 . node.js
 https://nodejs.org/en/docs/
