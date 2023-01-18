@@ -6,6 +6,9 @@ router.get('/', (req, res) => {
 })
 
 
+router.get('/chat', (req, res) => {
+    res.render('chat')
+})
 
 
 module.exports = router

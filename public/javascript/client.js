@@ -1,52 +1,90 @@
-const socket = io()
+const chatForm = document.getElementById('chat-form');
+const chatMessages = document.querySelector('.chat-messages');
+const roomName = document.getElementById('room-name');
+const userList = document.getElementById('users');
 
-let name;
-let textarea =document.querySelector('#textarea')
-let messageArea= document.querySelector('.message_area')
-do{
-   name =  prompt('please enter your name:')
-}while(!name)
+// Get username and room from URL
+const { username, room } = Qs.parse(location.search, {
+    ignoreQueryPrefix: true,
+});
 
-textarea.addEventListener('keyup',(e)=>{
-    if(e.key==='Enter'){
-        sendMessage (e.target.value)
+const socket = io();
+
+// Join chatroom
+socket.emit('joinRoom', { username, room });
+
+// Get room and users
+socket.on('roomUsers', ({ room, users }) => {
+    outputRoomName(room);
+    outputUsers(users);
+});
+
+// Message from server
+socket.on('message', (message) => {
+    console.log(message);
+    outputMessage(message);
+
+    // Scroll down
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+});
+
+// Message submit
+chatForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Get message text
+    let msg = e.target.elements.msg.value;
+
+    msg = msg.trim();
+
+    if (!msg) {
+        return false;
     }
-})
 
-function sendMessage(message){
-    let msg={
-        user:name,
-        message:message.trim()
+    // Emit message to server
+    socket.emit('chatMessage', msg);
+
+    // Clear input
+    e.target.elements.msg.value = '';
+    e.target.elements.msg.focus();
+});
+
+// Output message to DOM
+function outputMessage(message) {
+    const div = document.createElement('div');
+    div.classList.add('message');
+    const p = document.createElement('p');
+    p.classList.add('meta');
+    p.innerText = message.username;
+    p.innerHTML += `<span>${message.time}</span>`;
+    div.appendChild(p);
+    const para = document.createElement('p');
+    para.classList.add('text');
+    para.innerText = message.text;
+    div.appendChild(para);
+    document.querySelector('.chat-messages').appendChild(div);
+}
+
+// Add room name to DOM
+function outputRoomName(room) {
+    roomName.innerText = room;
+}
+
+// Add users to DOM
+function outputUsers(users) {
+    userList.innerHTML = '';
+    users.forEach((user) => {
+        const li = document.createElement('li');
+        li.innerText = user.username;
+        userList.appendChild(li);
+    });
+}
+
+//Prompt the user before leave chat room
+document.getElementById('leave-btn').addEventListener('click', () => {
+    const leaveRoom = confirm('Are you sure you want to leave the chatroom?');
+    if (leaveRoom) {
+        window.location = '../index.html';
+    } else {
     }
-    //Append
-    appendMesssage(msg,'outgoing')
-textarea.value =''
-scrollToBottom()
-   // send to server
-   socket.emit('message',msg)
-
-}
-function appendMesssage(msg,type){
-   let mainDiv = document.createElement('div')
-   let className = type
-   mainDiv.classList.add(className,'message')
-
-   let marup = 
-   `<h4>${msg.user}</h4>
-   <p>${msg.message}</p>`
-
-   mainDiv. innerHTML=marup
-
-   messageArea.appendChild(mainDiv)
-}
-
-// Reciveing msg#
-
-socket.on('message',(msg)=>{
-    appendMesssage(msg,'incoming')
-    scrollToBottom()
-})
-// autto scroll
-function scrollToBottom(){
-    messageArea.scrollTop = messageArea.scrollHeight
-}
+});
