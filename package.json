@@ -4,13 +4,18 @@
   "description": "a chat app ",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server"
+    "start": "nodemon server"
   },
   "author": "harshad",
   "license": "ISC",
   "dependencies": {
+    "consolidate": "^0.16.0",
     "express": "^4.18.1",
-    "nodemon": "^2.0.16",
-    "socket.io": "^4.5.1"
+    "path": "^0.12.7",
+    "socket.io": "^4.5.1",
+    "swig": "^1.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
