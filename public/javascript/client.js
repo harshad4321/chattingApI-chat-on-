@@ -21,7 +21,9 @@ socket.on('roomUsers', ({ room, users }) => {
 
 // Message from server
 socket.on('message', (message) => {
+
     console.log(message);
+
     outputMessage(message);
 
     // Scroll down
@@ -63,6 +65,8 @@ function outputMessage(message) {
     para.innerText = message.text;
     div.appendChild(para);
     document.querySelector('.chat-messages').appendChild(div);
+
+
 }
 
 // Add room name to DOM
@@ -84,7 +88,7 @@ function outputUsers(users) {
 document.getElementById('leave-btn').addEventListener('click', () => {
     const leaveRoom = confirm('Are you sure you want to leave the chatroom?');
     if (leaveRoom) {
-        window.location = '../../layout/index.html';
+        window.location = '/'
     } else {
     }
 });
