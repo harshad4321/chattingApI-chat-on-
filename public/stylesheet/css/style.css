@@ -46,10 +46,13 @@ a {
 	margin: 30px auto;
 	overflow: hidden;
 }
+img{
+    border-radius:  15px 15px 15px;
+}
 
 .chat-header {
-	background: var(--dark-color-a);
-	color: #fff;
+	background-color: #07487e;
+	color: rgb(43, 34, 34);
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	padding: 15px;
@@ -64,8 +67,8 @@ a {
 }
 
 .chat-sidebar {
-	background: var(--dark-color-b);
-	color: #fff;
+	background-color: #0c4e85d6;
+	color: rgb(41, 38, 38);
 	padding: 20px 20px 60px;
 	overflow-y: scroll;
 }
@@ -89,6 +92,7 @@ a {
 	padding: 30px;
 	max-height: 500px;
 	overflow-y: scroll;
+	background:#13212c
 }
 
 .chat-messages .message {
@@ -113,7 +117,7 @@ a {
 
 .chat-form-container {
 	padding: 20px 30px;
-	background-color: var(--dark-color-a);
+	background-color:#104570;
 }
 
 .chat-form-container form {
@@ -137,14 +141,14 @@ a {
 .join-header {
 	text-align: center;
 	padding: 20px;
-	background: var(--dark-color-a);
+	background-color: #1b3e64;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 }
 
 .join-main {
 	padding: 30px 40px;
-	background: var(--dark-color-b);
+	background-color: #14467d;
 }
 
 .join-main p {

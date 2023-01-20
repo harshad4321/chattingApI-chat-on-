@@ -3,9 +3,11 @@ const express = require('express');
 const http = require("http");
 const socketio = require('socket.io')
 const formatMessage = require("./utils/messages");
-const createAdapter = require("@socket.io/redis-adapter").createAdapter;
+const createAdapter = require("@socket.io/redis-adapter");
+const redis = require("redis");
 require("dotenv").config();
-const { createClient } = redis;
+
+// const { createClient } = redis;
 const {
     userJoin,
     getCurrentUser,
@@ -32,27 +34,30 @@ const usersRoute = require('./routers/index.js')
 app.use(express.static(path.join(__dirname + '/public')))
 
 
+app.use('/', usersRoute)
 
 
-const botName = "ChatCord Bot";
 
-(async () => {
-    pubClient = createClient({ url: "redis://127.0.0.1:6379" });
-    await pubClient.connect();
-    subClient = pubClient.duplicate();
-    io.adapter(createAdapter(pubClient, subClient));
-})();
+
+const botName = "ChatOn Bot";
+
+// (async () => {
+//     pubClient = createClient({ url: "redis://redis:6379" });
+//     await pubClient.connect();
+//     subClient = pubClient.duplicate();
+//     io.adapter(createAdapter(pubClient, subClient));
+// })();
 
 // Run when client connects
 io.on("connection", (socket) => {
-    console.log(io.of("/").adapter);
+    // console.log(io.of("/").adapter);
     socket.on("joinRoom", ({ username, room }) => {
         const user = userJoin(socket.id, username, room);
 
         socket.join(user.room);
 
         // Welcome current user
-        socket.emit("message", formatMessage(botName, "Welcome to ChatCord!"));
+        socket.emit("message", formatMessage(botName, "Welcome to ChatOn!"));
 
         // Broadcast when a user connects
         socket.broadcast
@@ -97,40 +102,8 @@ io.on("connection", (socket) => {
 
 
 
-app.use('/', usersRoute)
-
 const PORT = process.env.PORT || 3000;
 // server.listen(3000);
 server.listen(PORT, () => {
     console.log(`server is connected to port ${(PORT)}.`);
 })
-// socket.io
-
-// io.on('connection', (socket) => {
-//     console.log('connected,...');
-//     socket.on('message', (msg) => {
-//         console.log(msg)
-//         socket.broadcast.emit('message', msg)
-//     })
-// })
-
-
-
-
-
-
-
-
-// const users = {};
-
-// io.on('connection', (socket) => {
-//     console.log('connected,...');
-//     socket.on('new-user-joined', (name) => {
-//         users[socket.id] = name;
-//         socket.broadcast.emit('user-joined', name);
-//     });
-//     socket.on('send', message => {
-//         socket.broadcast.emit('receive', { message: message, name: user[socket.id] })
-//     });
-// });
-
