@@ -39,26 +39,20 @@ Start the app by running the following command.
 - [Redis](https://redis.io/)  - An in-memory data structure store used as a database, cache, and message broker.
 
 
-.socket.io
-https://socket.io/docs/v4/
-
-
-
-
 it's  sample chating app  img;
 
 ![chat-on!](ChatCord-App-1.png)
 
 ![chat-on!](Screenshot-2.png)
 
+## **Author**
+
+## [Harshad](https://harshad4321githubio-production.up.railway.app/)- Initial work
+
+## License
+This project is licensed under the ISC License 
 
 
-# Installation
-$ npm install
-
-# Running the app
-# development
-$ npm run dev
 
 
 
